@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import custom.NumericValueTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BUCC_PL.Controller">
+   <content>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="720.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="3.0" prefHeight="36.0" prefWidth="719.0" text="BRAC UNIVERSITY COMPUTER CLUB (BUCC)" textAlignment="CENTER" AnchorPane.bottomAnchor="561.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="3.0">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="257.0" layoutY="39.0" prefHeight="30.0" prefWidth="252.0" text="PL GENARATOR" textAlignment="CENTER" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="39.0">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="19.0" />
+               </font>
+            </Label>
+
+
+            <ImageView fitHeight="140.0" fitWidth="169.0" layoutX="25.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../bucc.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="269.0" layoutY="70.0" prefHeight="16.0" prefWidth="99.0" text="Today's Date     :" AnchorPane.bottomAnchor="514.0" AnchorPane.leftAnchor="269.0" AnchorPane.rightAnchor="352.0" AnchorPane.topAnchor="70.0">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font></Label>
+            <Label fx:id="eventTodaysDate" layoutX="370.0" layoutY="69.0" prefHeight="16.0" prefWidth="206.0" text="date" AnchorPane.bottomAnchor="515.0" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="69.0">
+               <font>
+                  <Font name="Castellar" size="12.0" />
+               </font></Label>
+
+            <Label fx:id="errorText" layoutX="26.0" layoutY="551.0" prefHeight="17.0" prefWidth="342.0" text="* Must Be Filled Up" textFill="#f81717" AnchorPane.bottomAnchor="490.0" AnchorPane.leftAnchor="285.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="94.0" />
+
+            <Label fx:id="PLGenerated" layoutX="26.0" layoutY="551.0" prefHeight="17.0" prefWidth="342.0" text="" textFill="#64a936" AnchorPane.bottomAnchor="490.0" AnchorPane.leftAnchor="285.0" AnchorPane.rightAnchor="315.0" AnchorPane.topAnchor="94.0" />
+
+            <TextField fx:id="plName" layoutX="161.0" layoutY="176.0" prefHeight="30.0" prefWidth="511.0" promptText="PL for Basic Pl Writing" AnchorPane.bottomAnchor="394.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="176.0" />
+            <Label layoutX="25.0" layoutY="182.0" prefHeight="22.0" prefWidth="99.0" text="PL Name                 :" AnchorPane.bottomAnchor="396.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="587.0" AnchorPane.topAnchor="182.0">
+
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font></Label>
+            <Label layoutX="25.0" layoutY="219.0" prefHeight="20.0" prefWidth="106.0" text="Event Name           :" AnchorPane.bottomAnchor="361.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="587.0" AnchorPane.topAnchor="219.0">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font></Label>
+            <TextField fx:id="eventName" layoutX="161.0" layoutY="214.0" prefHeight="30.0" prefWidth="385.0" promptText="basic pp writing" AnchorPane.bottomAnchor="356.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="214.0" />
+            <Label layoutX="25.0" layoutY="254.0" prefHeight="23.0" prefWidth="111.0" text="Event Date             :" AnchorPane.bottomAnchor="323.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="587.0" AnchorPane.topAnchor="254.0">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="eventDate" editable="false" layoutX="161.0" layoutY="252.0" prefHeight="11.0" prefWidth="174.0" promptText="Event Date" showWeekNumbers="true" AnchorPane.bottomAnchor="323.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="383.0" AnchorPane.topAnchor="252.0" />
+            <Label layoutX="25.0" layoutY="286.0" prefHeight="17.0" prefWidth="111.0" text="Start Time               :" AnchorPane.bottomAnchor="294.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="587.0" AnchorPane.topAnchor="286.0">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font>
+            </Label>
+
+            <NumericValueTextField fx:id="startTime" layoutX="161.0" layoutY="286.0" prefHeight="25.0" prefWidth="29.0" promptText="5" AnchorPane.bottomAnchor="291.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="530.0" AnchorPane.topAnchor="286.0" />
+            <ComboBox fx:id="combo1" layoutX="194.0" layoutY="286.0" maxWidth="62.0" prefHeight="25.0" prefWidth="49.0" promptText=" " AnchorPane.bottomAnchor="291.0" AnchorPane.leftAnchor="194.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="286.0" />
+            <Label layoutX="356.0" layoutY="286.0" prefHeight="20.0" prefWidth="91.0" text="End Time :" AnchorPane.bottomAnchor="294.0" AnchorPane.leftAnchor="356.0" AnchorPane.rightAnchor="273.0" AnchorPane.topAnchor="286.0">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font>
+            </Label>
+
+            <NumericValueTextField fx:id="endTime" layoutX="467.0" layoutY="286.0" prefHeight="25.0" prefWidth="27.0" promptText="8" AnchorPane.bottomAnchor="291.0" AnchorPane.leftAnchor="467.0" AnchorPane.rightAnchor="226.0" AnchorPane.topAnchor="286.0" />
+            <ComboBox fx:id="combo2" layoutX="498.0" layoutY="286.0" maxWidth="62.0" prefHeight="23.0" prefWidth="62.0" promptText=" " scaleShape="false" AnchorPane.bottomAnchor="291.0" AnchorPane.leftAnchor="498.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="286.0" />
+            <Label layoutX="25.0" layoutY="323.0" prefHeight="17.0" prefWidth="111.0" text="Event Venue          :" AnchorPane.bottomAnchor="257.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="587.0" AnchorPane.topAnchor="323.0">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font>
+            </Label>
+
+            <TextField fx:id="eventVenue" layoutX="161.0" layoutY="316.0" prefHeight="0.0" prefWidth="105.0" promptText="#UB40301" AnchorPane.bottomAnchor="257.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="454.0" AnchorPane.topAnchor="316.0" />
+            <Label layoutX="25.0" layoutY="359.0" prefHeight="17.0" prefWidth="104.0" text="Event Agenda       :" AnchorPane.bottomAnchor="221.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="587.0" AnchorPane.topAnchor="359.0">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="eventAgenda" layoutX="161.0" layoutY="352.0" prefHeight="30.0" prefWidth="528.0" promptText="to teach them bla bla" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="352.0" />
+            <Label layoutX="25.0" layoutY="405.0" prefHeight="20.0" prefWidth="108.0" text="Additional Text     :" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="587.0" AnchorPane.topAnchor="405.0">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="eventAddText" layoutX="161.0" layoutY="398.0" prefHeight="49.0" prefWidth="530.0" promptText="the trainers works for BUCC" AnchorPane.bottomAnchor="162.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="398.0" />
+            <Label layoutX="25.0" layoutY="452.0" prefHeight="20.0" prefWidth="108.0" text="Event Objective    :">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="eventObjective" layoutX="165.0" layoutY="443.0" prefHeight="39.0" prefWidth="530.0" promptText="the trainers works for BUCC" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="443.0" />
+            <Label layoutX="26.0" layoutY="484.0" prefHeight="17.0" prefWidth="111.0" text="Signed By" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="595.0" AnchorPane.topAnchor="484.0">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font>
+            </Label>
+
+            <RadioButton fx:id="signedByPresident" layoutX="164.0" layoutY="485.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" selected="true" text="President" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="462.0" AnchorPane.topAnchor="485.0">
+               <toggleGroup>
+                  <ToggleGroup fx:id="signedBy" />
+               </toggleGroup>
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="signedByVicePresident" layoutX="349.0" layoutY="485.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="114.0" text="Vice-President" toggleGroup="$signedBy" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="349.0" AnchorPane.rightAnchor="257.0" AnchorPane.topAnchor="485.0" />
+            <Label layoutX="25.0" layoutY="523.0" prefHeight="17.0" prefWidth="104.0" text="Budget Status:">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="noBudget" layoutX="164.0" layoutY="518.0" mnemonicParsing="false" onAction="#noBudget" prefHeight="24.0" prefWidth="131.0" selected="true" text="No Budget" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="425.0" AnchorPane.topAnchor="518.0">
+               <toggleGroup>
+                  <ToggleGroup fx:id="budgetStatus" />
+               </toggleGroup>
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="budget" layoutX="349.0" layoutY="518.0" mnemonicParsing="false" onAction="#budget" text="Budget" toggleGroup="$budgetStatus" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="349.0" AnchorPane.rightAnchor="288.0" AnchorPane.topAnchor="518.0" />
+            <NumericValueTextField fx:id="row" layoutX="419.0" layoutY="519.0" prefHeight="25.0" prefWidth="37.0" promptText="row" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="419.0" AnchorPane.rightAnchor="264.0" AnchorPane.topAnchor="519.0" />
+            <Label layoutX="79.0" layoutY="186.0" prefHeight="17.0" prefWidth="10.0" text="*" textFill="#f21515" AnchorPane.bottomAnchor="397.0" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="631.0" AnchorPane.topAnchor="186.0" />
+            <Label layoutX="98.0" layoutY="221.0" prefHeight="17.0" prefWidth="8.0" text="*" textFill="#f21515" AnchorPane.bottomAnchor="362.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="614.0" AnchorPane.topAnchor="221.0" />
+            <Label layoutX="90.0" layoutY="259.0" text="*" textFill="#f21515" AnchorPane.bottomAnchor="324.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="624.0" AnchorPane.topAnchor="259.0" />
+            <Label layoutX="84.0" layoutY="289.0" text="*" textFill="#f21515" AnchorPane.bottomAnchor="294.0" AnchorPane.leftAnchor="84.0" AnchorPane.rightAnchor="630.0" AnchorPane.topAnchor="289.0" />
+            <Label layoutX="422.0" layoutY="289.0" prefHeight="17.0" prefWidth="16.0" text="*" textFill="#f21515" AnchorPane.bottomAnchor="294.0" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="282.0" AnchorPane.topAnchor="289.0" />
+            <Label layoutX="107.0" layoutY="361.0" text="*" textFill="#f21515" AnchorPane.bottomAnchor="222.0" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="607.0" AnchorPane.topAnchor="361.0" />
+            <Label layoutX="99.0" layoutY="325.0" text="*" textFill="#f21515" AnchorPane.bottomAnchor="258.0" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="615.0" AnchorPane.topAnchor="325.0" />
+            <Label layoutX="25.0" layoutY="568.0" prefHeight="17.0" prefWidth="196.0" text="Powered By Humayun Kabir Torab" textFill="#907a7a" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="499.0" AnchorPane.topAnchor="568.0">
+               <font>
+                  <Font name="Britannic Bold" size="12.0" />
+               </font>
+            </Label>
+            <Button layoutX="446.0" layoutY="569.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="120.0" text="Reset" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="446.0" AnchorPane.rightAnchor="154.0" AnchorPane.topAnchor="569.0">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font></Button>
+            <Button layoutX="575.0" layoutY="570.0" mnemonicParsing="false" onAction="#extractToWord" prefHeight="25.0" prefWidth="119.0" text="Extract To Word">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font></Button>
+            <Button cancelButton="true" layoutX="328.0" layoutY="569.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="111.0" text="Exit" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="328.0" AnchorPane.rightAnchor="281.0" AnchorPane.topAnchor="569.0">
+               <font>
+                  <Font name="Eras Demi ITC" size="12.0" />
+               </font></Button>
+            <Label layoutX="116.0" layoutY="455.0" text="*" textFill="#f21515" />
+
+         </children></AnchorPane>
+   </content>
+</ScrollPane>
