@@ -11,8 +11,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        primaryStage.setTitle("BUCC PL GENERATOR");
-        primaryStage.setScene(new Scene(root, 725  , 610));
+        primaryStage.setTitle("BUCC PL GENERATOR v2");
+        primaryStage.setScene(new Scene(root, 725  , 615));
         primaryStage.show();
     }
 

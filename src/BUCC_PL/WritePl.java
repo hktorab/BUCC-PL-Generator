@@ -6,6 +6,7 @@ import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Torab on 19-Apr-17.
@@ -23,39 +25,29 @@ public class WritePl {
     private XWPFDocument document;
     private FileOutputStream out;
     private String docName;
-
     private String eventDate;
-    private    String eventDateWithDay;
+    private String eventDateWithDay;
     private  String eventName;
     private  String eventAgenda;
     private  String additionalText;
-    private String whoesSigning;
-    private  int row;
     private  String eventVenue;
     private  String eventObjective;
-    private    String startTime;
+    private  String startTime;
     private String endTime;
     private  String eventDay;
-    private Label success;
-    private Label err;
 
+    public Label success;
+    List<List<String>> budgetArray;
     protected void variablesSet(String plName, LocalDate localDate,
                                 String eName, String eventAgendas, String eventAdditionText,
-                                String signature, String eventVenues, String sTime, String eTime,
-                                String eventObjectives, int budget,  Label PLGenerated,Label error) {
+                                String eventVenues, String sTime, String eTime,
+                                String eventObjectives,  List<List<String>> budget, Label suc) {
         try {
-            err=error;
-            success =PLGenerated;
-            docName="PlOn "+plName+".docx";
-
-
-
+            success=suc;
+            docName=plName+".docx";
             document= new XWPFDocument();
             //Write the Document.docs
-
             out = new FileOutputStream( new File(docName));
-
-
 
             //Day
             eventDay=localDate.getDayOfWeek().toString();
@@ -76,16 +68,19 @@ public class WritePl {
 
             eventDateWithDay=eventDay+","+dayChecker(dateOfTheEvent)+month+","+ year;
             eventDate=dayChecker(dateOfTheEvent)+month+","+ year;
-            System.out.println(eventDateWithDay);
+            //  System.out.println(eventDateWithDay);
 
 
             eventName=eName;
             eventAgenda=eventAgendas;
             additionalText=eventAdditionText;
-            whoesSigning=signature;
+
+
+
+
             //budget
-            //budget==0 means no budgets and budget>0 means that line f budget
-            row=budget;
+
+            budgetArray=budget;
 
             eventVenue=eventVenues;
             eventObjective=eventObjectives;
@@ -142,10 +137,10 @@ public class WritePl {
             intro();
             subject(eventName);
             body(eventName,eventDateWithDay,eventAgenda,additionalText);
-            signature(whoesSigning);
+            signature();
 
             //Second Page(Budget)
-            budget(row);
+            budget(budgetArray);
 
             //third Page Proposal outline
 
@@ -167,7 +162,15 @@ public class WritePl {
             out.close();
             System.out.println("createdocument.docx written successully");
             success.setText("Pl Generated");
-            err.setText("");
+
+            File file = new File(docName);
+            try {
+                //Open the file using Desktop class
+                Desktop.getDesktop().open(file);
+                docName="";
+            }catch (IOException exception){
+                exception.printStackTrace();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -178,7 +181,7 @@ public class WritePl {
 
 //First Page: HEADER
 
-    private void addImage(){
+  /*  private void addImage(){
         try {
             XWPFParagraph paragraph = document.createParagraph();
             XWPFRun run=paragraph.createRun();
@@ -186,34 +189,26 @@ public class WritePl {
 
             run.removeBreak();
 
-          /*  String imgFile= System.getProperty("user.dir")+"\\drawable\\bucc.png";
-            System.out.println(imgFile);*/
+          *//*  String imgFile= System.getProperty("user.dir")+"\\drawable\\bucc.png";
+            System.out.println(imgFile);*//*
 
-           //FileInputStream is = new FileInputStream(System.getProperty("user.dir")+"\\drawable\\bucc.png");
-           InputStream is = this.getClass().getClassLoader().getResourceAsStream("bucc.png");
-
-
+            //FileInputStream is = new FileInputStream(System.getProperty("user.dir")+"\\drawable\\bucc.png");
+            InputStream is = this.getClass().getClassLoader().getResourceAsStream("bucc.png");
             run.addPicture(is, XWPFDocument.PICTURE_TYPE_PNG,
                     null, Units.toEMU(80.52), Units.toEMU(85.08)); // 107x108 pixels
 
-
-
-
             run.removeBreak();
 
-           is.close();
+            is.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
     protected void header() {
         try {
             //Editing The HEADER TOP and BOTTOM
-
-
-
 
 
             //Write the Document.docs
@@ -263,7 +258,7 @@ public class WritePl {
             run.setText("COMPUTER CLUB,BUCC");
 
 
-            System.out.println("header works");
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -356,8 +351,7 @@ public class WritePl {
         run.addBreak();
         run.setText("BRAC University Computer Club is planning to organize an event named "+eventName+" on "
                 +date+". The agenda of the event is "+
-                agenda+" " +additionalText+" . Since the event is open for all the students of BRAC University," +
-                " therefore, we are expecting a huge number of participants. Therefore, we need "+eventVenue+"" +
+                agenda+" " +additionalText+" Therefore, we need "+eventVenue+"" +
                 " for conducting this event.");
         run.addBreak();
 
@@ -370,7 +364,11 @@ public class WritePl {
 
 //FIRST PAGE: PRESIDENT OR VP SIGNATURE
 
-    private void signature(String sign) {
+
+    private void signature() {
+
+
+
         XWPFParagraph paragraph = document.createParagraph();
         paragraph.setBorderBottom(Borders.SINGLE);//for single line border for sirs signature
 
@@ -381,77 +379,42 @@ public class WritePl {
         run.setBold(true);
         run.setFontFamily("Times New Roman");
 
+        run.setText(Controller.signatureName+", ID: ");
 
-        if (sign.equals("anim")){
-            run.setText("Hasin Raihan, ID: ");
+        run=paragraph.createRun();
+        run.setFontSize(12);
+        run.setFontFamily("Times New Roman");
+        run.setText(Controller.signatureId+", "+Controller.signaturePost+" , BUCC");
+        run.addBreak();
 
-            run=paragraph.createRun();
-            run.setFontSize(12);
-            run.setFontFamily("Times New Roman");
-            run.setText("13301102, President, BUCC");
-            run.addBreak();
-
-            run=paragraph.createRun();
-            run.setFontSize(12);
-            run.setFontFamily("Times New Roman");
-            run.setBold(true);
-            run.setText("Cell: ");
+        run=paragraph.createRun();
+        run.setFontSize(12);
+        run.setFontFamily("Times New Roman");
+        run.setBold(true);
+        run.setText("Cell: ");
 
 
-            run=paragraph.createRun();
-            run.setFontSize(12);
-            run.setFontFamily("Times New Roman");
-            run.setText("016761709545, ");
+        run=paragraph.createRun();
+        run.setFontSize(12);
+        run.setFontFamily("Times New Roman");
+        run.setText(Controller.signatureMobile+", ");
 
 
-            run=paragraph.createRun();
-            run.setFontSize(12);
-            run.setFontFamily("Times New Roman");
-            run.setBold(true);
-            run.setText("Email: ");
+        run=paragraph.createRun();
+        run.setFontSize(12);
+        run.setFontFamily("Times New Roman");
+        run.setBold(true);
+        run.setText("Email: ");
 
 
 
-            run=paragraph.createRun();
-            run.setFontSize(12);
-            run.setFontFamily("Times New Roman");
-            run.setText("anim.bracu@gmail.com");
-        }
-        else {
-            run.setText("Md. Asif Bin Khaled, ID: ");
-
-            run=paragraph.createRun();
-            run.setFontSize(12);
-            run.setFontFamily("Times New Roman");
-            run.setText("12201105, Vice-President, BUCC");
-            run.addBreak();
-
-            run=paragraph.createRun();
-            run.setFontSize(12);
-            run.setFontFamily("Times New Roman");
-            run.setBold(true);
-            run.setText("Cell: ");
-
-
-            run=paragraph.createRun();
-            run.setFontSize(12);
-            run.setFontFamily("Times New Roman");
-            run.setText("01521216544, ");
-
-
-            run=paragraph.createRun();
-            run.setFontSize(12);
-            run.setFontFamily("Times New Roman");
-            run.setBold(true);
-            run.setText("Email: ");
+        run=paragraph.createRun();
+        run.setFontSize(12);
+        run.setFontFamily("Times New Roman");
+        run.setText(Controller.signatureEmail);
 
 
 
-            run=paragraph.createRun();
-            run.setFontSize(12);
-            run.setFontFamily("Times New Roman");
-            run.setText("xrenon.xon@gmail.com");
-        }
         run.addBreak();
         adviserSignature();
 
@@ -467,6 +430,7 @@ public class WritePl {
         XWPFParagraph paragraph = document.createParagraph();
         paragraph.setBorderBottom(Borders.SINGLE);
 
+        paragraph = document.createParagraph();
         paragraph = document.createParagraph();
         paragraph.setAlignment(ParagraphAlignment.LEFT);
         XWPFRun run=paragraph.createRun();
@@ -544,7 +508,7 @@ public class WritePl {
 //:: :: PAGE TWO: BUDGET
 
     //This section is for Budget Page oF the Pl
-    private void budget(int row) {
+    private void budget(  List<List<String>> budgetArray) {
 
 
 
@@ -566,7 +530,8 @@ public class WritePl {
         run.setFontFamily("Times New Roman");
         run.setText("BUDGET");
         run.addBreak();
-        if (row==0){
+        if (budgetArray.isEmpty())
+        {
             run.addBreak();
             run.addBreak();
             run.addBreak();
@@ -581,7 +546,8 @@ public class WritePl {
         }
         else {
             //create table
-            XWPFTable table = document.createTable(row,6);
+            int c=budgetArray.size()+2;
+            XWPFTable table = document.createTable(c,7);
             run.setFontSize(12);
             run.setBold(true);
 
@@ -590,20 +556,56 @@ public class WritePl {
             formatTableText(table,2,"Item");
             formatTableText(table,3,"Quantity");
             formatTableText(table,4,"Rate(Taka)");
-            formatTableText(table,5,"Allocated Budget");
+            formatTableText(table,5,"Total");
+            formatTableText(table,6,"Allocated Budget");
 
+            int row=0;
             for(int x = 0;x < table.getNumberOfRows(); x++){
+
+                int col=0;
                 XWPFTableRow tableRow = table.getRow(x);
                 int numberOfCell = tableRow.getTableCells().size();
+                if(x==c-1)
+                {
+                    XWPFTableCell cell = tableRow.getCell(4);
+                    cell.getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(3000));
+                    //  System.out.println(row+"c:"+col);
+                    cell.setText("Total");
+
+                }
                 for(int y = 0; y < numberOfCell ; y++){
-                    if(y==1){
 
+                    if(y==1 ){
+                        if (x==c-1){
+
+                        }
+                       else if (!(x==0)) {
+                            XWPFTableCell cell = tableRow.getCell(y);
+                            cell.setText("" + (row+1));
+                        } else {
+
+                        }
                     }
-                    else {
+                    else if (!(y==6))
+                    {
+                        if (x==c-1){
+
+                        }
+                       else if (!(x==0)){
+
                         XWPFTableCell cell = tableRow.getCell(y);
-
                         cell.getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(3000));
+                        //  System.out.println(row+"c:"+col);
+                        cell.setText(""+budgetArray.get(row).get(col));
+                        col++;
+
+                    } else {
+
                     }
+                    }
+                }
+                if (!(x==0)){
+                    row++;
                 }
             }
         }
