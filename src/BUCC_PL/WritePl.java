@@ -1001,14 +1001,11 @@ public class WritePl {
     private void footer() throws IOException {
 
 
-
-
-
         CTP ctp = CTP.Factory.newInstance();
         CTR ctr = ctp.addNewR();
         CTRPr rpr = ctr.addNewRPr();
         CTText textt = ctr.addNewT();
-        textt.setStringValue( "Page :" );
+        textt.setStringValue( "Page : " );
 
 
         /*CTP ctp = CTP.Factory.newInstance();
@@ -1025,6 +1022,7 @@ public class WritePl {
         codePara.setAlignment(ParagraphAlignment.RIGHT);
 
         CTSectPr sectPr = document.getDocument().getBody().addNewSectPr();
+       // textt.setStringValue( " out of 4" );
 
         try {
             XWPFHeaderFooterPolicy headerFooterPolicy = new XWPFHeaderFooterPolicy(document, sectPr);

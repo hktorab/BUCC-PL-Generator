@@ -108,7 +108,8 @@ public class Controller implements Initializable{
         eventObjective.setText("");
         eventDate.setValue(localDate);
         success.setText("");
-
+        noBudget(actionEvent);
+        noBudget.setSelected(true);
 
 
 

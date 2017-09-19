@@ -11,10 +11,11 @@ import java.util.Iterator;
 
 public class JSON {
     File file = new File("plGenerator.json");
-    JSONParser parser = new JSONParser();
 
     void checkingSignature(String sign)
     {
+        JSONParser parser = new JSONParser();
+
         try {
             //President
             if (sign.equals("President")){
