@@ -19,14 +19,14 @@
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="601.0" prefWidth="720.0" stylesheets="@style.css">
          <children>
 
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="3.0" prefHeight="47.0" prefWidth="709.0" text="BRAC UNIVERSITY COMPUTER CLUB (BUCC)" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="47.0" prefWidth="719.0" text="BRAC UNIVERSITY COMPUTER CLUB (BUCC)" textAlignment="CENTER" textFill="#1a1919">
                <font>
-                  <Font name="Times New Roman Bold" size="18.0" />
+                  <Font name="OCR A Extended" size="21.0" />
                </font>
             </Label>
             <Label alignment="CENTER" layoutX="231.0" layoutY="39.0" prefHeight="30.0" prefWidth="252.0" text="PL GENARATOR" textAlignment="CENTER">
                <font>
-                  <Font name="Times New Roman" size="18.0" />
+                  <Font name="OCR A Extended" size="21.0" />
                </font>
             </Label>
 

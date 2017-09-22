@@ -135,21 +135,26 @@ public class tableController implements Initializable {
 
 
     public void AddProductBudget(ActionEvent actionEvent) {
-        ProductClass newProduct = new ProductClass();
+
+        if (!(textFieldCategory.getText().isEmpty() && textFieldQuantity.getText().isEmpty() && textFieldItem.getText().isEmpty()
+                && textFieldRate.getText().isEmpty() && textFieldCost.getText().isEmpty()))
+        {
+            ProductClass newProduct = new ProductClass();
 
 
-        newProduct.setCat(textFieldCategory.getText());
-        newProduct.setItem(textFieldItem.getText());
-        newProduct.setQuantity(textFieldQuantity.getText());
-        newProduct.setRate(textFieldRate.getText());
-        newProduct.setCost(textFieldCost.getText());
-        table.getItems().add(newProduct);
+            newProduct.setCat(textFieldCategory.getText());
+            newProduct.setItem(textFieldItem.getText());
+            newProduct.setQuantity(textFieldQuantity.getText());
+            newProduct.setRate(textFieldRate.getText());
+            newProduct.setCost(textFieldCost.getText());
+            table.getItems().add(newProduct);
 
-        textFieldCategory.clear();
-        textFieldItem.clear();
-        textFieldQuantity.clear();
-        textFieldRate.clear();
-        textFieldCost.clear();
+            textFieldCategory.clear();
+            textFieldItem.clear();
+            textFieldQuantity.clear();
+            textFieldRate.clear();
+            textFieldCost.clear();
+        }
     }
 
     public void buttonRemove(ActionEvent actionEvent) {

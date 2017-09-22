@@ -77,6 +77,8 @@ public class Controller implements Initializable{
 
 //making Text field input only numeric
         numericTextField(endTime);
+        numericTextField(showPhone);
+        numericTextField(showID);
         numericTextField(startTime);
         //signature field initialization
         signature(event);
@@ -201,14 +203,14 @@ public class Controller implements Initializable{
                 errorRemoveField(eventAgenda);
                 errorRemoveField(eventObjective);
 
-                String signature="";
+                JSON json = new JSON();
                 if (signedByPresident.isSelected())
                 {
                     if (!(signatureName.equalsIgnoreCase(showName.getText()) && signatureId.equalsIgnoreCase(showID.getText()) &&
                             signatureMobile.equalsIgnoreCase(showPhone.getText()) && signatureEmail.equalsIgnoreCase(showEmail.getText()) )){
                         //hsetText();
 
-                        JSON.updateJSONFile("President",showName.getText(),showID.getText(),showPhone.getText(),showEmail.getText());
+                        json.updateJSONFile("President",showName.getText(),showID.getText(),showPhone.getText(),showEmail.getText());
                     }
 
                 }
@@ -217,7 +219,7 @@ public class Controller implements Initializable{
                             signatureMobile.equalsIgnoreCase(showPhone.getText()) && signatureEmail.equalsIgnoreCase(showEmail.getText()) )){
                         //hsetText();
 
-                        JSON.updateJSONFile("Vice-President",showName.getText(),showID.getText(),showPhone.getText(),showEmail.getText());
+                        json.updateJSONFile("Vice-President",showName.getText(),showID.getText(),showPhone.getText(),showEmail.getText());
                     }
 
                 }
@@ -226,7 +228,7 @@ public class Controller implements Initializable{
                             signatureMobile.equalsIgnoreCase(showPhone.getText()) && signatureEmail.equalsIgnoreCase(showEmail.getText()) )){
                         //hsetText();
 
-                        JSON.updateJSONFile("Director",showName.getText(),showID.getText(),showPhone.getText(),showEmail.getText());
+                        json.updateJSONFile("Director",showName.getText(),showID.getText(),showPhone.getText(),showEmail.getText());
                     }
 
                 }
@@ -282,9 +284,9 @@ public class Controller implements Initializable{
 
     }
     public void exit(ActionEvent actionEvent) {
-        JSON.lol();
 
-      //  System.exit(0);
+
+        System.exit(0);
     }
 
     public void eventDateValidation(ActionEvent actionEvent) {

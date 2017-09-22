@@ -4,15 +4,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Iterator;
 
 public class JSON {
     static File file = new File("plGenerator.json");
-
+    JSONParser parser;
     void checkingSignature(String sign)
     {
         JSONParser parser = new JSONParser();
@@ -25,9 +22,16 @@ public class JSON {
                 {
                     Object obj = parser.parse(new FileReader("plGenerator.json"));
                     JSONObject jsonObject = (JSONObject) obj;
-                    if (!jsonObject.containsKey("President"))
+                    JSONArray info = (JSONArray) jsonObject.get("President");
+                    Iterator<String> iterator = info.iterator();
+
+                    if (iterator.next().isEmpty())
                     {
                         defaultPresident();
+                        jsonObject.clear();
+                        info.clear();
+                        ((JSONObject) obj).clear();
+
                     }else {
                         readInForSignature("President",jsonObject);
                     }
@@ -36,15 +40,23 @@ public class JSON {
                 }
             }
             //Vice President
+            //Vice-President
             else if(sign.equals("Vice-President"))
             {
                 if (file.exists())
                 {
                     Object obj = parser.parse(new FileReader("plGenerator.json"));
                     JSONObject jsonObject = (JSONObject) obj;
-                    if (!jsonObject.containsKey("Vice-President"))
+                    JSONArray info = (JSONArray) jsonObject.get("Vice-President");
+                    Iterator<String> iterator = info.iterator();
+
+                    if (iterator.next().isEmpty())
                     {
                         defaultVp();
+                        jsonObject.clear();
+                        info.clear();
+                        ((JSONObject) obj).clear();
+
                     }else {
                         readInForSignature("Vice-President",jsonObject);
                     }
@@ -58,9 +70,16 @@ public class JSON {
                 {
                     Object obj = parser.parse(new FileReader("plGenerator.json"));
                     JSONObject jsonObject = (JSONObject) obj;
-                    if (!jsonObject.containsKey("Director"))
+                    JSONArray info = (JSONArray) jsonObject.get("Director");
+                    Iterator<String> iterator = info.iterator();
+
+                    if (iterator.next().isEmpty())
                     {
                         defaultDirector();
+                        jsonObject.clear();
+                        info.clear();
+                        ((JSONObject) obj).clear();
+
                     }else {
                         readInForSignature("Director",jsonObject);
                     }
@@ -103,60 +122,37 @@ public class JSON {
 
 
 
-    private void readInForSignature(String post, JSONObject jsonObject) {
+    private  void readInForSignature(String post, JSONObject jsonObject) {
         JSONArray info = (JSONArray) jsonObject.get(post);
-        Iterator<String> iterator = info.iterator();
+        Iterator<String> it = info.iterator();
 
-        Controller.signatureName=iterator.next();
-        Controller.signatureId=iterator.next();
-        Controller.signaturePost=iterator.next();
-        Controller.signatureMobile=iterator.next();
-        Controller.signatureEmail=iterator.next();
-        jsonObject.clear();
-
+        if (it.next().isEmpty())
+        {
+            defaultPresident();
+            jsonObject.clear();
+        }else {
+            info = (JSONArray) jsonObject.get(post);
+            Iterator<String> iterator = info.iterator();
+            Controller.signatureName=iterator.next();
+            Controller.signatureId=iterator.next();
+            Controller.signaturePost=iterator.next();
+            Controller.signatureMobile=iterator.next();
+            Controller.signatureEmail=iterator.next();
+            jsonObject.clear();
+        }
 
     }
 
 
 
-    static void lol(){
-        String s1 = "[{name: \"Bob\", car: \"Ford\"},{name: \"Mary\", car: \"Fiat\"}]";
-        String s2 = "[{name: \"Mack\", car: \"VW\"},{name: \"Steve\", car: \"Mercedes Benz\"}]";
-        String s3;
-        //  s1=s1.s
-        s1=s1.substring(s1.indexOf("[")+1, s1.indexOf("]"));
-        System.out.println(s1);
-        s2=s2.substring(s2.indexOf("[")+1, s2.indexOf("]"));
-        System.out.println(s2);
-
-        s3="["+s1+","+s2+"]";
-        // System.out.println(s3);
-    }
 
 
 
-    static  String post;
-    static  String nameText;
-    static  String idText;
-    static  String phoneText;
-    static  String emailText;
 
 
-    public static void updateJSONFile(String p, String name, String id, String phone, String email) {
+    public  void updateJSONFile(String post, String name, String id, String phone, String email) {
 
-        post=p;
-        nameText=name;
-        idText=id;
-        phoneText=phone;
-        emailText=email;
 
-        String s1 = "[{name: \"Bob\", car: \"Ford\"},{name: \"Mary\", car: \"Fiat\"}]";
-        String s2 = "[{name: \"Mack\", car: \"VW\"},{name: \"Steve\", car: \"Mercedes Benz\"}]";
-        String s3=new String("");
-        s1=s1.substring(s1.indexOf("[")+1, s1.indexOf("]"));
-        s2=s2.substring(s2.indexOf("[")+1, s2.indexOf("]"));
-        s3="["+s1+","+s2+"]";
-        System.out.println(s3);
 
 
         try {
@@ -164,46 +160,71 @@ public class JSON {
             if (!file.exists())
             {
                 file.createNewFile();
-                write();
-            }
-            else {
-                JSONParser parser = new JSONParser();
-                Object object = parser.parse(new FileReader("plGenerator.json"));
-                JSONObject jsonObject = (JSONObject) object;
-
-                boolean presidentObjectExist=false;
-                boolean vpObjectExist=false;
-                boolean directorObjectExist=false;
-
-                if (jsonObject.containsKey("President")) {
-                    presidentObjectExist=true;
-                }else if (jsonObject.containsKey("Vice-President"))
-                {
-                    vpObjectExist=true;
-                }else if (jsonObject.containsKey("Director"))
-                {
-                    directorObjectExist=true;
-                }
-                else {
-
-                }
-
-                if (post.equals("President")) {
-                    presidentObjectExist=true;
-                }else if (jsonObject.containsKey("Vice-President"))
-                {
-                    vpObjectExist=true;
-                }else if (jsonObject.containsKey("Director"))
-                {
-                    directorObjectExist=true;
-                }
-                else {
-
-                }
+                String dummyValue="{\"President\":[\"\",\"\",\"\",\"\",\"\"],\"Vice-President\":[\"\",\"\",\"\",\"\",\"\"],\"Director\":[\"\",\"\",\"\",\"\",\"\"]"+"}";
+               // System.out.println(dummyValue);
+                createJSON(dummyValue); // it will create a blank json file with empty value of president,vp and director
 
             }
 
-            write();
+            //Creating Json Object
+            JSONObject obj = new JSONObject();
+            JSONArray list = new JSONArray();
+            list.add(name);
+            list.add(id);
+            list.add(post);
+            list.add(phone);
+            list.add(email);
+            obj.put(post, list);
+            String valueOfObject=obj.toJSONString();
+
+            //Removing initial { and finishing } of json file
+            valueOfObject=valueOfObject.substring(valueOfObject.indexOf("{")+1,valueOfObject.indexOf("}"));
+           // System.out.println(valueOfObject);
+
+
+            //Fetching Data of json File
+
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("plGenerator.json"));
+            String storedValueInJson=bufferedReader.readLine();
+
+            //Removing initial { and finishing } of json file
+            storedValueInJson=storedValueInJson.substring(storedValueInJson.indexOf("{")+1,storedValueInJson.indexOf("}"));
+            //System.out.println(storedValueInJson);
+
+            String [] array =storedValueInJson.split("]");
+            array[0]+="]";
+            array[1]+="]";
+            array[2]+="]";
+
+            if (post.equals("President")) {
+                array[0]=valueOfObject;
+            }else if (post.equals("Vice-President"))
+            {
+                array[1]=valueOfObject;
+            }else if (post.equals("Director"))
+            {
+                array[2]=valueOfObject;
+            }
+            else { }
+
+            String newJSONValue="{"+array[0];
+
+            for (int c=1;c<array.length;c++){
+                newJSONValue=newJSONValue+array[c];
+            }
+
+            newJSONValue=newJSONValue+"}";
+           // System.out.println(newJSONValue);
+            createJSON(newJSONValue);
+
+
+            //updating info from json file
+            JSONParser parser = new JSONParser();
+            Object  object = parser.parse(new FileReader("plGenerator.json"));
+            JSONObject jsonObject = (JSONObject)  object;
+            readInForSignature(post,jsonObject);
+
+
 
         }catch (Exception e)
         {
@@ -211,30 +232,16 @@ public class JSON {
         }
     }
 
-    private static void write() throws IOException {
-        JSONObject obj = new JSONObject();
-        JSONArray list = new JSONArray();
-        list.add(nameText);
-        list.add(idText);
-        list.add(post);
-        list.add(phoneText);
-        list.add(emailText);
-        //obj.put();
-        obj.putIfAbsent(post, list);
+    private static void createJSON(String value){
+        try {
 
+            FileWriter fileWriter = new FileWriter("plGenerator.json");
+            fileWriter.write(value);
 
+            fileWriter.flush();
 
-
-        FileWriter fileWriter = new FileWriter(file);
-        fileWriter.write(obj.toJSONString());
-        fileWriter.flush();
-
-
-
-        Controller.signatureName=nameText;
-        Controller.signatureId=idText;
-        Controller.signaturePost=post;
-        Controller.signatureMobile=phoneText;
-        Controller.signatureEmail=emailText;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

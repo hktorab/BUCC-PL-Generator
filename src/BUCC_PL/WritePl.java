@@ -89,7 +89,7 @@ public class WritePl {
             endTime=eTime;
 
 
-            write();
+            write(plName);
         }
         catch (Exception e)
         {
@@ -128,7 +128,7 @@ public class WritePl {
 
 
 
-    protected void write(){
+    protected void write(String plName){
         try {
 
             //first Page
@@ -160,7 +160,7 @@ public class WritePl {
             }
             document.write(out);
             out.close();
-            System.out.println("createdocument.docx written successully");
+            System.out.println(plName +" written successully");
             success.setText("Pl Generated");
 
             File file = new File(docName);
@@ -282,7 +282,7 @@ public class WritePl {
         dateFormat=new SimpleDateFormat("MMMM");
         date = new Date();
         dat=dat+""+dateFormat.format(date)+",";
-        System.out.println(dat);
+        //System.out.println(dat);
 
 
         dateFormat=new SimpleDateFormat("Y");
