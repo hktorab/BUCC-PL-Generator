@@ -239,7 +239,8 @@ public class Controller implements Initializable{
 
                 String  sTime=startTime.getText()+" "+combo1.getValue();
                 String  eTime=endTime.getText()+" "+combo2.getValue();
-                writePl.variablesSet(plName.getText(),localDate,eventName.getText(),eventAgenda.getText(),
+                String agenda=eventAgenda.getText().toLowerCase();
+                writePl.variablesSet(plName.getText(),localDate,eventName.getText(),agenda,
                         eventAddText.getText(),eventVenue.getText(),sTime,eTime,eventObjective.getText(),budgetArray,success);
 
             }
@@ -281,9 +282,9 @@ public class Controller implements Initializable{
 
     }
     public void exit(ActionEvent actionEvent) {
+        JSON.lol();
 
-
-        System.exit(0);
+      //  System.exit(0);
     }
 
     public void eventDateValidation(ActionEvent actionEvent) {

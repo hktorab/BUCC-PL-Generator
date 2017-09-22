@@ -123,7 +123,7 @@ public class WritePl {
 
 
 
-        return dat+" of ";
+        return dat+" ";
     }
 
 
@@ -274,20 +274,20 @@ public class WritePl {
         DateFormat dateFormat=new SimpleDateFormat("d");
 
         Date date = new Date();
-        String dat=dateFormat.format(date).toString();
+        String dat=dateFormat.format(date);
         int checkDate= Integer.parseInt(dat);
 
         dat= dayChecker(checkDate);
 
         dateFormat=new SimpleDateFormat("MMMM");
         date = new Date();
-        dat=dat+""+dateFormat.format(date).toString()+",";
-
+        dat=dat+""+dateFormat.format(date)+",";
+        System.out.println(dat);
 
 
         dateFormat=new SimpleDateFormat("Y");
         date = new Date();
-        dat=dat+" "+dateFormat.format(date).toString();
+        dat=dat+" "+dateFormat.format(date);
 
 
 
@@ -430,7 +430,7 @@ public class WritePl {
         XWPFParagraph paragraph = document.createParagraph();
         paragraph.setBorderBottom(Borders.SINGLE);
 
-        paragraph = document.createParagraph();
+
         paragraph = document.createParagraph();
         paragraph.setAlignment(ParagraphAlignment.LEFT);
         XWPFRun run=paragraph.createRun();
@@ -461,7 +461,7 @@ public class WritePl {
         run=paragraph.createRun();
         run.setFontSize(12);
         run.setFontFamily("Times New Roman");
-        run.setText("04478444113 ");
+        run.setText("+8809617445118 ");
 
 
         run=paragraph.createRun();
@@ -579,7 +579,7 @@ public class WritePl {
                         if (x==c-1){
 
                         }
-                       else if (!(x==0)) {
+                        else if (!(x==0)) {
                             XWPFTableCell cell = tableRow.getCell(y);
                             cell.setText("" + (row+1));
                         } else {
@@ -591,17 +591,17 @@ public class WritePl {
                         if (x==c-1){
 
                         }
-                       else if (!(x==0)){
+                        else if (!(x==0)){
 
-                        XWPFTableCell cell = tableRow.getCell(y);
-                        cell.getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(3000));
-                        //  System.out.println(row+"c:"+col);
-                        cell.setText(""+budgetArray.get(row).get(col));
-                        col++;
+                            XWPFTableCell cell = tableRow.getCell(y);
+                            cell.getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(3000));
+                            //  System.out.println(row+"c:"+col);
+                            cell.setText(""+budgetArray.get(row).get(col));
+                            col++;
 
-                    } else {
+                        } else {
 
-                    }
+                        }
                     }
                 }
                 if (!(x==0)){
@@ -1022,7 +1022,7 @@ public class WritePl {
         codePara.setAlignment(ParagraphAlignment.RIGHT);
 
         CTSectPr sectPr = document.getDocument().getBody().addNewSectPr();
-       // textt.setStringValue( " out of 4" );
+        // textt.setStringValue( " out of 4" );
 
         try {
             XWPFHeaderFooterPolicy headerFooterPolicy = new XWPFHeaderFooterPolicy(document, sectPr);

@@ -7,10 +7,11 @@ import org.json.simple.parser.JSONParser;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Iterator;
 
 public class JSON {
-    File file = new File("plGenerator.json");
+    static File file = new File("plGenerator.json");
 
     void checkingSignature(String sign)
     {
@@ -102,8 +103,8 @@ public class JSON {
 
 
 
-    private void readInForSignature(String position, JSONObject jsonObject) {
-        JSONArray info = (JSONArray) jsonObject.get(position);
+    private void readInForSignature(String post, JSONObject jsonObject) {
+        JSONArray info = (JSONArray) jsonObject.get(post);
         Iterator<String> iterator = info.iterator();
 
         Controller.signatureName=iterator.next();
@@ -116,38 +117,124 @@ public class JSON {
 
     }
 
-    public static void updateJSONFile(String post, String nameText, String idText, String phoneText, String emailText) {
+
+
+    static void lol(){
+        String s1 = "[{name: \"Bob\", car: \"Ford\"},{name: \"Mary\", car: \"Fiat\"}]";
+        String s2 = "[{name: \"Mack\", car: \"VW\"},{name: \"Steve\", car: \"Mercedes Benz\"}]";
+        String s3;
+        //  s1=s1.s
+        s1=s1.substring(s1.indexOf("[")+1, s1.indexOf("]"));
+        System.out.println(s1);
+        s2=s2.substring(s2.indexOf("[")+1, s2.indexOf("]"));
+        System.out.println(s2);
+
+        s3="["+s1+","+s2+"]";
+        // System.out.println(s3);
+    }
 
 
 
+    static  String post;
+    static  String nameText;
+    static  String idText;
+    static  String phoneText;
+    static  String emailText;
 
 
+    public static void updateJSONFile(String p, String name, String id, String phone, String email) {
 
-       JSONObject obj = new JSONObject();
+        post=p;
+        nameText=name;
+        idText=id;
+        phoneText=phone;
+        emailText=email;
 
+        String s1 = "[{name: \"Bob\", car: \"Ford\"},{name: \"Mary\", car: \"Fiat\"}]";
+        String s2 = "[{name: \"Mack\", car: \"VW\"},{name: \"Steve\", car: \"Mercedes Benz\"}]";
+        String s3=new String("");
+        s1=s1.substring(s1.indexOf("[")+1, s1.indexOf("]"));
+        s2=s2.substring(s2.indexOf("[")+1, s2.indexOf("]"));
+        s3="["+s1+","+s2+"]";
+        System.out.println(s3);
+
+
+        try {
+
+            if (!file.exists())
+            {
+                file.createNewFile();
+                write();
+            }
+            else {
+                JSONParser parser = new JSONParser();
+                Object object = parser.parse(new FileReader("plGenerator.json"));
+                JSONObject jsonObject = (JSONObject) object;
+
+                boolean presidentObjectExist=false;
+                boolean vpObjectExist=false;
+                boolean directorObjectExist=false;
+
+                if (jsonObject.containsKey("President")) {
+                    presidentObjectExist=true;
+                }else if (jsonObject.containsKey("Vice-President"))
+                {
+                    vpObjectExist=true;
+                }else if (jsonObject.containsKey("Director"))
+                {
+                    directorObjectExist=true;
+                }
+                else {
+
+                }
+
+                if (post.equals("President")) {
+                    presidentObjectExist=true;
+                }else if (jsonObject.containsKey("Vice-President"))
+                {
+                    vpObjectExist=true;
+                }else if (jsonObject.containsKey("Director"))
+                {
+                    directorObjectExist=true;
+                }
+                else {
+
+                }
+
+            }
+
+            write();
+
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private static void write() throws IOException {
+        JSONObject obj = new JSONObject();
         JSONArray list = new JSONArray();
         list.add(nameText);
         list.add(idText);
         list.add(post);
         list.add(phoneText);
         list.add(emailText);
+        //obj.put();
+        obj.putIfAbsent(post, list);
 
-        obj.put(post, list);
 
-        try (FileWriter file = new FileWriter("plGenerator.json")) {
 
-            file.write(obj.toJSONString());
-            file.flush();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        FileWriter fileWriter = new FileWriter(file);
+        fileWriter.write(obj.toJSONString());
+        fileWriter.flush();
+
+
 
         Controller.signatureName=nameText;
         Controller.signatureId=idText;
         Controller.signaturePost=post;
         Controller.signatureMobile=phoneText;
         Controller.signatureEmail=emailText;
-
     }
 }
