@@ -4,7 +4,7 @@
 
 The program is licensed under the GPL 3 License:
 
-Copyright © 2015-2016 BRAC University Computer Club
+Copyright © 2017-2018 BRAC University Computer Club
 
 This program is free software: Only Member of BRAC University Computer Club can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
