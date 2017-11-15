@@ -230,7 +230,8 @@ public class WritePl {
             run.removeBreak();
             run.removeBreak();
 
-            InputStream is = this.getClass().getClassLoader().getResourceAsStream("bucc.png");
+
+            InputStream is = this.getClass().getClassLoader().getResourceAsStream("mainBUCC.png");
             run.addPicture(is, XWPFDocument.PICTURE_TYPE_PNG,
                     null, Units.toEMU(80.52), Units.toEMU(85.08)); // 107x108 pixels
 
