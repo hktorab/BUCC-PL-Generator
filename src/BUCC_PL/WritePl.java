@@ -351,8 +351,8 @@ public class WritePl {
         run.setText("Respected Sir, ");
         run.addBreak();
         run.setText("BRAC University Computer Club is planning to organize an event named "+eventName+" on "
-                +date+". The agenda of the event is "+
-                agenda+" " +additionalText+" Therefore, we need "+eventVenue+"" +
+                +date+"."+
+                agenda+"." +additionalText+".Therefore, we need "+eventVenue+"" +
                 " for conducting this event.");
         run.addBreak();
 
