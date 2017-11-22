@@ -256,7 +256,7 @@ public class WritePl {
             run.setUnderline(UnderlinePatterns.SINGLE);
             run.setText( "COVER LETTER OF EVENT");
             run.addBreak();
-            run.setText("BRAC UNIVERSITY COMPUTER CLUB,BUCC");
+            run.setText("BRAC UNIVERSITY COMPUTER CLUB (BUCC)");
 
 
 
