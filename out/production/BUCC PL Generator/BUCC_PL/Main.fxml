@@ -21,92 +21,94 @@
 
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="47.0" prefWidth="719.0" text="BRAC UNIVERSITY COMPUTER CLUB (BUCC)" textAlignment="CENTER" textFill="#1a1919">
                <font>
-                  <Font name="OCR A Extended" size="21.0" />
+                  <Font name="Cambria" size="21.0" />
                </font>
             </Label>
             <Label alignment="CENTER" layoutX="231.0" layoutY="39.0" prefHeight="30.0" prefWidth="252.0" text="PL GENARATOR" textAlignment="CENTER">
                <font>
-                  <Font name="OCR A Extended" size="21.0" />
+                  <Font name="Cambria" size="21.0" />
                </font>
             </Label>
 
 
             <ImageView fitHeight="124.0" fitWidth="127.0" layoutX="6.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../bucc.png" />
+                  <Image url="@../UI/ColoredBUCC.png" />
                </image>
             </ImageView>
             <Label layoutX="288.0" layoutY="70.0" prefHeight="16.0" prefWidth="99.0" text="Today's Date     :">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Math" size="12.0" />
                </font></Label>
             <Label fx:id="todayDate" layoutX="389.0" layoutY="69.0" prefHeight="18.0" prefWidth="206.0" text="date">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Math" size="12.0" />
                </font></Label>
-            <Label fx:id="success" layoutX="287.0" layoutY="96.0" prefHeight="17.0" prefWidth="146.0" />
+            <Label fx:id="success" alignment="CENTER" layoutX="-1.0" layoutY="96.0" prefHeight="21.0" prefWidth="715.0" textFill="#3f8a37">
+               <font>
+                  <Font name="Cambria Bold" size="12.0" />
+               </font></Label>
 
             <TextField fx:id="plName" layoutX="161.0" layoutY="139.0" prefHeight="30.0" prefWidth="528.0" promptText="PL Name" />
-            <Label layoutX="25.0" layoutY="143.0" prefHeight="22.0" prefWidth="110.0" text="PL Name                 ">
-
+            <Label alignment="CENTER" layoutY="143.0" prefHeight="22.0" prefWidth="161.0" text="PL Name                 ">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font></Label>
-            <Label layoutX="24.0" layoutY="179.0" prefHeight="20.0" prefWidth="106.0" text="Event Name           ">
+            <Label alignment="CENTER" layoutX="2.0" layoutY="179.0" prefHeight="20.0" prefWidth="157.0" text="Event Name           ">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font></Label>
             <TextField fx:id="eventName" layoutX="160.0" layoutY="174.0" prefHeight="30.0" prefWidth="385.0" promptText="Event Name" />
-            <Label layoutX="25.0" layoutY="211.0" prefHeight="23.0" prefWidth="111.0" text="Event Date             ">
+            <Label alignment="CENTER" layoutX="2.0" layoutY="211.0" prefHeight="23.0" prefWidth="158.0" text="Event Date             ">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font>
             </Label>
             <DatePicker fx:id="eventDate" editable="false" layoutX="161.0" layoutY="209.0" onAction="#eventDateValidation" prefHeight="11.0" prefWidth="174.0" promptText="Event Date" showWeekNumbers="true" />
-            <Label layoutX="24.0" layoutY="238.0" prefHeight="17.0" prefWidth="117.0" text="Start Time               ">
+            <Label alignment="CENTER" layoutX="2.0" layoutY="242.0" prefHeight="17.0" prefWidth="158.0" text="Start Time               ">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font>
             </Label>
 
             <TextField fx:id="startTime" layoutX="161.0" layoutY="238.0" prefHeight="25.0" prefWidth="29.0" promptText="5" />
             <ComboBox fx:id="combo1" layoutX="197.0" layoutY="238.0" maxWidth="68.0" prefHeight="25.0" prefWidth="68.0" promptText=" " />
-            <Label layoutX="359.0" layoutY="238.0" prefHeight="20.0" prefWidth="91.0" text="End Time :">
+            <Label layoutX="359.0" layoutY="242.0" prefHeight="20.0" prefWidth="91.0" text="End Time :">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font>
             </Label>
 
             <TextField fx:id="endTime" layoutX="450.0" layoutY="238.0" prefHeight="25.0" prefWidth="27.0" promptText="8" />
             <ComboBox fx:id="combo2" layoutX="484.0" layoutY="238.0" maxWidth="68.0" prefHeight="25.0" prefWidth="68.0" promptText=" " scaleShape="false" />
-            <Label layoutX="25.0" layoutY="270.0" prefHeight="17.0" prefWidth="111.0" text="Event Venue          ">
+            <Label alignment="CENTER" layoutX="1.0" layoutY="270.0" prefHeight="17.0" prefWidth="160.0" text="Event Venue          ">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font>
             </Label>
 
-            <TextField fx:id="eventVenue" layoutX="161.0" layoutY="267.0" prefHeight="0.0" prefWidth="105.0" promptText="#UB40301" />
-            <Label layoutX="25.0" layoutY="301.0" prefHeight="17.0" prefWidth="118.0" text="Event Agenda       ">
+            <TextField fx:id="eventVenue" layoutX="161.0" layoutY="267.0" prefHeight="0.0" prefWidth="105.0" promptText="UB40301" />
+            <Label alignment="CENTER" layoutY="304.0" prefHeight="17.0" prefWidth="161.0" text="Event Agenda       ">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font>
             </Label>
             <TextArea fx:id="eventAgenda" layoutX="161.0" layoutY="296.0" prefHeight="30.0" prefWidth="528.0" promptText="to teach them ...." />
-            <Label layoutX="25.0" layoutY="346.0" prefHeight="20.0" prefWidth="108.0" text="Additional Text     ">
+            <Label alignment="CENTER" layoutY="346.0" prefHeight="20.0" prefWidth="162.0" text="Additional Text     ">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font>
             </Label>
             <TextArea fx:id="eventAddText" layoutX="161.0" layoutY="339.0" prefHeight="38.0" prefWidth="528.0" promptText="the trainers works for BUCC" />
-            <Label layoutX="25.0" layoutY="391.0" prefHeight="20.0" prefWidth="108.0" text="Event Objective    ">
+            <Label alignment="CENTER" layoutY="391.0" prefHeight="20.0" prefWidth="161.0" text="Event Objective    ">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font>
             </Label>
             <TextArea fx:id="eventObjective" layoutX="161.0" layoutY="382.0" prefHeight="39.0" prefWidth="528.0" promptText="studen can learn to how code" />
-            <Label layoutX="26.0" layoutY="454.0" prefHeight="17.0" prefWidth="111.0" text="Signed By">
+            <Label alignment="CENTER" layoutY="454.0" prefHeight="17.0" prefWidth="163.0" text="Signed By">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font>
             </Label>
 
@@ -115,21 +117,21 @@
                   <ToggleGroup fx:id="signedBy" />
                </toggleGroup>
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font></RadioButton>
             <RadioButton fx:id="signedByVicePresident" layoutX="163.0" layoutY="458.0" mnemonicParsing="false" onAction="#signature" prefHeight="22.0" prefWidth="114.0" text="Vice-President" toggleGroup="$signedBy">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font></RadioButton>
             <RadioButton fx:id="signedByDirector" layoutX="163.0" layoutY="481.0" mnemonicParsing="false" onAction="#signature" prefHeight="22.0" prefWidth="114.0" text="Director" toggleGroup="$signedBy">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font>
             </RadioButton>
 
-            <Label layoutX="25.0" layoutY="534.0" prefHeight="17.0" prefWidth="104.0" text="Budget Status:">
+            <Label alignment="CENTER" layoutX="1.0" layoutY="534.0" prefHeight="17.0" prefWidth="162.0" text="Budget Status:">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font>
             </Label>
             <RadioButton fx:id="noBudget" layoutX="164.0" layoutY="529.0" mnemonicParsing="false" onAction="#noBudget" prefHeight="24.0" prefWidth="131.0" selected="true" text="No Budget">
@@ -137,20 +139,12 @@
                   <ToggleGroup fx:id="budgetStatus" />
                </toggleGroup>
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font></RadioButton>
             <RadioButton fx:id="budget" layoutX="349.0" layoutY="531.0" mnemonicParsing="false" onAction="#budget" text="Budget" toggleGroup="$budgetStatus">
                <font>
-                  <Font name="Eras Demi ITC" size="12.0" />
+                  <Font name="Cambria Bold" size="13.0" />
                </font></RadioButton>
-
-            <Label layoutX="79.0" layoutY="147.0" prefHeight="17.0" prefWidth="10.0" text="*" textFill="#f21515" />
-            <Label layoutX="97.0" layoutY="181.0" prefHeight="17.0" prefWidth="8.0" text="*" textFill="#f21515" />
-            <Label layoutX="90.0" layoutY="216.0" text="*" textFill="#f21515" />
-            <Label layoutX="87.0" layoutY="241.0" text="*" textFill="#f21515" />
-            <Label layoutX="425.0" layoutY="241.0" prefHeight="17.0" prefWidth="16.0" text="*" textFill="#f21515" />
-            <Label layoutX="107.0" layoutY="303.0" text="*" textFill="#f21515" />
-            <Label layoutX="99.0" layoutY="272.0" text="*" textFill="#f21515" />
             <Button fx:id="reset" layoutX="438.0" layoutY="568.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="120.0" text="Reset">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
@@ -163,7 +157,6 @@
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font></Button>
-            <Label layoutX="116.0" layoutY="394.0" text="*" textFill="#f21515" />
             <TextField fx:id="showName" layoutX="363.0" layoutY="427.0" prefHeight="25.0" prefWidth="161.0" promptText="showName" />
             <TextField fx:id="showID" layoutX="529.0" layoutY="427.0" prefHeight="25.0" prefWidth="161.0" promptText="showId" />
             <TextField fx:id="showPhone" layoutX="363.0" layoutY="457.0" prefHeight="25.0" prefWidth="161.0" promptText="showPhone" />

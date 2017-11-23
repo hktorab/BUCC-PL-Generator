@@ -117,14 +117,15 @@ public class Controller implements Initializable{
 
 
     }
-    LocalDate localDate;
+
     static List<List<String>> budgetArray;
 
 
     public void extractToWord(ActionEvent actionEvent) {
         try {
 
-            localDate = eventDate.getValue();
+
+
 
             //PlName
             if ((plName.getText()).isEmpty())
@@ -138,6 +139,10 @@ public class Controller implements Initializable{
             {
                 errorRemoveField(plName);
                 errorField(eventName);
+            }
+            else  if (eventDate.getValue()==null){
+                errorRemoveField(eventName);
+                errorField(eventDate);
             }
 
             //Start Time
@@ -242,14 +247,14 @@ public class Controller implements Initializable{
                 String  sTime=startTime.getText()+" "+combo1.getValue();
                 String  eTime=endTime.getText()+" "+combo2.getValue();
                 String agenda=eventAgenda.getText().toLowerCase();
-                writePl.variablesSet(plName.getText(),localDate,eventName.getText(),agenda,
+                writePl.variablesSet(plName.getText(),   eventDate.getValue(),eventName.getText(),agenda,
                         eventAddText.getText(),eventVenue.getText(),sTime,eTime,eventObjective.getText(),budgetArray,success);
 
             }
         }
         catch (Exception e){
 
-            errorField(eventDate);
+            //  errorField(eventDate);
         }
 
     }
@@ -290,6 +295,8 @@ public class Controller implements Initializable{
     }
 
     public void eventDateValidation(ActionEvent actionEvent) {
+        LocalDate localDate;
+        localDate = eventDate.getValue();
         eventDate.setConverter(new StringConverter<LocalDate>()
         {
             private DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("dd/MM/yyyy");

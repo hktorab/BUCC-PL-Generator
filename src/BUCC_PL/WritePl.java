@@ -161,7 +161,7 @@ public class WritePl {
             document.write(out);
             out.close();
             System.out.println(plName +" written successully");
-            success.setText("Pl Generated");
+            success.setText(plName+".docx has been generated");
 
             File file = new File(docName);
             try {
@@ -189,11 +189,11 @@ public class WritePl {
 
             run.removeBreak();
 
-          *//*  String imgFile= System.getProperty("user.dir")+"\\drawable\\bucc.png";
+          *//*  String imgFile= System.getProperty("user.dir")+"\\drawable\\BUCC.png";
             System.out.println(imgFile);*//*
 
-            //FileInputStream is = new FileInputStream(System.getProperty("user.dir")+"\\drawable\\bucc.png");
-            InputStream is = this.getClass().getClassLoader().getResourceAsStream("bucc.png");
+            //FileInputStream is = new FileInputStream(System.getProperty("user.dir")+"\\drawable\\ColoredBUCC.png");
+            InputStream is = this.getClass().getClassLoader().getResourceAsStream("ColoredBUCC.png");
             run.addPicture(is, XWPFDocument.PICTURE_TYPE_PNG,
                     null, Units.toEMU(80.52), Units.toEMU(85.08)); // 107x108 pixels
 
@@ -231,7 +231,7 @@ public class WritePl {
             run.removeBreak();
 
 
-            InputStream is = this.getClass().getClassLoader().getResourceAsStream("mainBUCC.png");
+            InputStream is = this.getClass().getClassLoader().getResourceAsStream("BUCC.png");
             run.addPicture(is, XWPFDocument.PICTURE_TYPE_PNG,
                     null, Units.toEMU(80.52), Units.toEMU(85.08)); // 107x108 pixels
 
@@ -283,7 +283,7 @@ public class WritePl {
         dateFormat=new SimpleDateFormat("MMMM");
         date = new Date();
         dat=dat+""+dateFormat.format(date)+",";
-        //System.out.println(dat);
+
 
 
         dateFormat=new SimpleDateFormat("Y");
@@ -442,15 +442,15 @@ public class WritePl {
 
         run.setText("Advisor of the Club");
         run.addBreak();
-        run.setText("Annajiat Alim Rasel");
+        run.setText("Annajiat Alim Rasel, Lecturer III, CSE Department,");
         run.addBreak();
-
+/*
 
         run=paragraph.createRun();
         run.setFontSize(12);
         run.setFontFamily("Times New Roman");
-        run.setText("Lecturer III, CSE Department,");
-        run.addBreak();
+        run.setText("");  Lecturer III, CSE Department
+        run.addBreak(); */
 
         run=paragraph.createRun();
         run.setFontSize(12);
