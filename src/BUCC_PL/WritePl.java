@@ -310,7 +310,7 @@ public class WritePl {
         run.setText("Office of Co-curricular Activities");
 
         run.addBreak();
-        run.setText("BRAC University,");
+        run.setText("BRAC University");
 
         run.addBreak();
         run.setText("Mohakhali, Dhaka-1212");
