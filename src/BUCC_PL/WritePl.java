@@ -325,7 +325,7 @@ public class WritePl {
         run.setFontSize(12);
         run.setFontFamily("Times New Roman");
         run.setBold(true);
-        run.setText("Subject:");
+        run.setText("Subject: ");
 
 
         run=paragraph.createRun();
