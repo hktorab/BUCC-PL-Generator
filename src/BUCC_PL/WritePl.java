@@ -385,7 +385,7 @@ public class WritePl {
         run=paragraph.createRun();
         run.setFontSize(12);
         run.setFontFamily("Times New Roman");
-        run.setText(Controller.signatureId+", "+Controller.signaturePost+" , BUCC");
+        run.setText(Controller.signatureId+", "+Controller.signaturePost+, BUCC");
         run.addBreak();
 
         run=paragraph.createRun();
@@ -1006,7 +1006,7 @@ public class WritePl {
         CTR ctr = ctp.addNewR();
         CTRPr rpr = ctr.addNewRPr();
         CTText textt = ctr.addNewT();
-        textt.setStringValue( "Page : " );
+        textt.setStringValue( "Page: " );
 
 
         /*CTP ctp = CTP.Factory.newInstance();
