@@ -1,3 +1,14 @@
 .errors{
 -fx-background-color:red,linear-gradient(to bottom,derive(red,60%)5%,derive(red,60%)40%);
 }
+.hyperlink {
+    -fx-border-color: transparent;
+    -fx-padding: 4 0 4 0;
+    -fx-text-fill: #1a1919;
+    -fx-font-style: none;
+}
+.hyperlink:hover {
+
+    -fx-text-fill: #0e61ea;
+    -fx-underline: false;
+}

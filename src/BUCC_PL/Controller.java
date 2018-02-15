@@ -8,12 +8,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.StringConverter;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -54,6 +59,8 @@ public class Controller implements Initializable{
     public  TextField showPhone;
     public  TextField showEmail;
     public Button reset;
+    public RadioButton organizedByBUCC;
+    public RadioButton organizedByBUCC_CSE;
 
     ObservableList<String> list = FXCollections.observableArrayList("AM","PM");
     ActionEvent event;
@@ -112,6 +119,7 @@ public class Controller implements Initializable{
         success.setText("");
         noBudget(actionEvent);
         noBudget.setSelected(true);
+        organizedByBUCC.setSelected(true);
 
 
 
@@ -242,13 +250,18 @@ public class Controller implements Initializable{
                 {
                     budgetArray=new ArrayList<>();
                 }
+                String organizedBy;
+                if (organizedByBUCC.isSelected())
+                    organizedBy="BUCC";
+                else
+                    organizedBy="CSE_BUCC";
                 WritePl writePl = new WritePl();
 
                 String  sTime=startTime.getText()+" "+combo1.getValue();
                 String  eTime=endTime.getText()+" "+combo2.getValue();
                 String agenda=eventAgenda.getText().toLowerCase();
                 writePl.variablesSet(plName.getText(),   eventDate.getValue(),eventName.getText(),agenda,
-                        eventAddText.getText(),eventVenue.getText(),sTime,eTime,eventObjective.getText(),budgetArray,success);
+                        eventAddText.getText(),eventVenue.getText(),sTime,eTime,eventObjective.getText(),budgetArray,success,organizedBy);
 
             }
         }
@@ -398,4 +411,12 @@ public class Controller implements Initializable{
     }
 
 
+
+
+    public void linkOpenid(ActionEvent actionEvent) {
+        try {
+            Desktop.getDesktop().browse(new URL("https://iamtorab.com/").toURI());
+        } catch (Exception e) {}
+
+    }
 }

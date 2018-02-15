@@ -5,6 +5,8 @@ import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
+
+import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -36,10 +38,11 @@ public class WritePl {
 
     public Label success;
     List<List<String>> budgetArray;
+    String mainOrganizer;
     protected void variablesSet(String plName, LocalDate localDate,
                                 String eName, String eventAgendas, String eventAdditionText,
                                 String eventVenues, String sTime, String eTime,
-                                String eventObjectives,  List<List<String>> budget, Label suc) {
+                                String eventObjectives, List<List<String>> budget, Label suc, String organizedBy) {
         try {
             success=suc;
             docName=plName+".docx";
@@ -87,6 +90,8 @@ public class WritePl {
             endTime=eTime;
 
 
+            mainOrganizer=organizedBy;
+
             write(plName);
         }
         catch (Exception e)
@@ -130,7 +135,6 @@ public class WritePl {
         try {
 
             //first Page
-
             header();
             intro();
             subject(eventName);
@@ -345,15 +349,25 @@ public class WritePl {
         XWPFRun run=paragraph.createRun();
         run.setFontSize(12);
         run.setFontFamily("Times New Roman");
-
         run.setText("Respected Sir, ");
         run.addBreak();
-        run.setText("BRAC University Computer Club is planning to organize an event named "+eventName+" on "
-                +date+"."+
-                agenda+"." +additionalText+".Therefore, we need "+eventVenue+"" +
-                " for conducting this event.");
-        run.addBreak();
 
+        //check if the event is organized by bucc only
+        if (mainOrganizer.equals("BUCC")){
+
+            run.setText("BRAC University Computer Club is planning to organize an event named "+eventName+" on "
+                    +date+"."+
+                    agenda+"." +additionalText+".Therefore, we need "+eventVenue+"" +
+                    " for conducting this event.");
+
+        }else {
+            run.setText("BRAC University Computer Club in association with Department of Computer Science " +
+                    "and Engineering is planning to organize an event named "+eventName+" on "
+                    +date+"."+
+                    agenda+"." +additionalText+".Therefore, we need "+eventVenue+"" +
+                    " for conducting this event.");
+        }
+        run.addBreak();
         run.setText("Therefore, BRAC University Computer Club (BUCC) requests you to approve this event.") ;
         run.addBreak();
         run.setText("Yours sincerely,");
@@ -383,7 +397,7 @@ public class WritePl {
         run=paragraph.createRun();
         run.setFontSize(12);
         run.setFontFamily("Times New Roman");
-        run.setText(Controller.signatureId+", "+Controller.signaturePost+, BUCC");
+        run.setText(Controller.signatureId+", "+Controller.signaturePost+", BUCC");
         run.addBreak();
 
         run=paragraph.createRun();
@@ -491,6 +505,19 @@ public class WritePl {
         run.setFontFamily("Times New Roman");
         run.setText("annajiat@bracu.ac.bd, annajiat@gmail.com");
         run.addBreak();
+
+        if (!(mainOrganizer.equals("BUCC"))){
+            paragraph = document.createParagraph();
+            paragraph.setBorderBottom(Borders.SINGLE);
+            paragraph = document.createParagraph();
+            paragraph.setAlignment(ParagraphAlignment.LEFT);
+            run=paragraph.createRun();
+            run.setFontSize(12);
+            run.setBold(true);
+            run.setFontFamily("Times New Roman");
+            run.setText("Professor Md. Abdul Mottalib, Chairperson, Department of Computer Science and engineering");
+        }
+
 
         paragraph = document.createParagraph();
         paragraph.setBorderBottom(Borders.SINGLE);
@@ -673,6 +700,7 @@ public class WritePl {
         table.getRow(0).getCell(2).removeParagraph(0);
 
         /*
+
         table.getRow(1).getCell(0).setText("Main Organizer/Organizing Committee");
         table.getRow(1).getCell(1).setText(": ");
         table.getRow(1).getCell(2).setText("BRAC University Computer Club (BUCC) ");
@@ -687,15 +715,16 @@ public class WritePl {
         table.getRow(1).getCell(0).removeParagraph(0);//This line deletes blank paraghaph
 
         table.getRow(1).getCell(1).setText(": ");
-
         runs = table.getRow(1).getCell(2).addParagraph().createRun();
         runs.setFontFamily("Times New Roman");
         runs.setFontSize(12);
-        runs.setText("BRAC University Computer Club (BUCC)");
+
+        if ((mainOrganizer.equals("BUCC"))){
+            runs.setText("BRAC University Computer Club (BUCC)");
+        }else {
+            runs.setText("BRAC University Computer Club (BUCC) & Department of Computer Science and Engineering.");
+        }
         table.getRow(1).getCell(2).removeParagraph(0);//This line deletes blank paraghaph
-
-
-
 
         /*
 
@@ -798,7 +827,7 @@ public class WritePl {
 
 
 
-    //Creating new Page/third for the doc
+    //Creating new Page/third for the doc`
     private void detailsSchedule(String eventName, String eventDateWithDay,
                                  String eventVenue, String eventObjective, String startTime, String endTime,String eventDay){
         //Details Schedule
@@ -1008,7 +1037,7 @@ public class WritePl {
 
 
         /*CTP ctp = CTP.Factory.newInstance();
-        */
+         */
 
         //this add page number incremental
         ctp.addNewR().addNewPgNum();
